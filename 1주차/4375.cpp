@@ -1,21 +1,22 @@
 #include<bits/stdc++.h>
 using namespace std;
 int n;
-int main(){
-	while(cin>>n){
-		int num;
-		long long ll;
-		string s="1";
-		
-		cin >> num;
-		
-		while(1){
-			if(stoll(s)%num==0){
+int main() {
+	ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+
+	while (cin >> n) {
+		int cnt = 1;
+		int num = 1;
+		while (1) {
+			if (num % n == 0) {
 				break;
-			}else{
-				s+='1';
+			}
+			else {
+				num = 10 * num +1;
+				num %= n;
+				cnt++;
 			}
 		}
-		cout<<s.size()<<'\n';
+		cout << cnt << '\n';
 	}
 }
