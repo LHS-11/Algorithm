@@ -12,7 +12,8 @@ int main(){
 	cin >> t;
 	
 	while(t--){
-		memset(vis,0,sizeof(vis));
+		fill(&vis[0][0],&vis[0][0]+51*51,0);
+		//memset(vis,0,sizeof(vis));
 		int n,m,k;
 		cin >> m >> n>>k ;// 가로, 세로, 배추  
 		
