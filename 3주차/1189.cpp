@@ -10,7 +10,7 @@ int dfs(int y,int x,int n){
 	if(y==0 && x==c-1 && n==k){
 		return 1; 
 	}
-	cout<<y<<' '<<x << ' '<<n<<endl;
+	
 	for(int i=0;i<4;i++){
 		int nx=x+dx[i];
 		int ny=y+dy[i];
