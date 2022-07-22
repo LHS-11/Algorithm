@@ -9,7 +9,7 @@ void dfs(int now, int t) {
 	vis[now] = 1;
 	for (int i = 0; i < v[now].size(); i++) {
 		int nxt = v[now][i];
-		if (vis[nxt] || a[nxt]!=t) continue;
+		if (vis[nxt] || a[nxt] != t) continue;
 		vis[nxt] = t;
 		dfs(nxt, t);
 	}
@@ -22,11 +22,15 @@ int main() {
 	for (int i = 1; i <= n; i++) {
 		int x;
 		cin >> x;
-		v[i].push_back(x);
+		while (x--) {
+			int y; cin >> y;
+			v[i].push_back(y);
+		}
 	}
 	for (int i = 1; i < (1 << n) - 1; i++) {
 		int idx1 = -1, idx2 = -1;
 		int sum1 = 0, sum2 = 0;
+		memset(vis, 0, sizeof(vis));
 		for (int j = 0; j < n; j++) {
 			if (i & (1 << j)) {
 				a[j + 1] = 1;
@@ -42,12 +46,13 @@ int main() {
 		dfs(idx1, 1);
 		dfs(idx2, 2);
 		int flag = 0;
-		for (int i = 1; i <=n; i++) {
-			if (!vis[i]) flag = 1;
+		for (int i = 1; i <= n; i++) {
+			if (!vis[i]) {
+				flag = 1;
+				break;
+			}
 		}
 		if (!flag) ans = min(ans, abs(sum1 - sum2));
 	}
-	cout << ans << endl;
-	cout << ans << endl;
 	ans == INF ? cout << -1 : cout << ans;
 }
