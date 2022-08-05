@@ -26,7 +26,9 @@ pair<int, int> rotate(int startX, int startY, int baseX, int baseY, vector<pair<
 	pair<int, int> p = { x1,y1 };
 	return p;
 }
-void go(int x, int y, int dir, int sz) { // 회전변환 시계 방향으로 90도 = 반시계 방향으로 270도
+void go(int x, int y, int dir, int sz) { // 회전변환 시계 방향으로 90도 = 반시계 방향으로 270도 
+	// cos -sin => 반 시계방향으로 회전  
+	// sin cos
 
 	int nx = x + dx[dir];
 	int ny = y + dy[dir];
