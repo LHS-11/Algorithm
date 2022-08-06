@@ -2,6 +2,15 @@
 using namespace std;
 int n, m, t;
 int a[54][54];
+void _rotate(int x, int k, int dir) { // rotate 함수 사용해서 풀이
+	for (int i = x; i <= n; i += x) {
+		vector<int> v;
+		for (int j = 1; j <= m; j++) v.push_back(a[i][j]);
+		if (dir == 1) rotate(v.begin(), v.begin() + k, v.end()); // 반시계 방향
+		else rotate(v.begin(), v.begin() + m - k, v.end()); // 시계 방향
+		for (int j = 1; j <= m; j++) a[i][j] = v[j - 1];
+	}
+}
 void rotateR(int k,int cnt) { // 시계 방향으로 회전
 
 	for (int i = k; i <= n; i += k) {
