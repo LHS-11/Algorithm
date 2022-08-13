@@ -21,6 +21,7 @@ void go(int idx,int cnt,int sz) {
 		go(i,cnt+1, sz);
 		v.pop_back();
 		vis[i] = 0;
+
 	}
 }
 void permutation(int cnt, int sz) {
