@@ -31,5 +31,5 @@ int main() {
 		}
 		else l = mid + 1;
 	}
-	cout << ans;
+	cout << ans<<'\n';
 }
