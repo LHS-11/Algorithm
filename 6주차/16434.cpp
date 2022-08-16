@@ -17,8 +17,8 @@ int main() {
 		tie(info, atk1, h) = v[i];
 
 		if (info == 1) {
-			long long l = 0, r = 8e18+4, mid;
-			long long cnt = 8e18;
+			long long l = 0, r = 1e18+4, mid;
+			long long cnt = 1e18;
 			while (l <= r) {
 				mid = (l + r) >> 1;
 				if (mid * atk >= h) {
