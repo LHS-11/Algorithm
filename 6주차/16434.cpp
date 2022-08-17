@@ -13,7 +13,7 @@ bool go(ll k) {
 		tie(info, atk1, h) = v[i];
 		ll cnt = 0;
 		if (info == 1) {
-			(h% attack)!=0 ? cnt = h / attack + 1 : cnt = h / attack;
+			(h % attack) != 0 ? cnt = h / attack + 1 : cnt = h / attack;
 			cnt--;
 			if (cnt * atk1 >= hp) return false;
 			hp -= cnt * atk1;
