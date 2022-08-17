@@ -1,8 +1,31 @@
-#include<bits/stdc++.h>
+ï»¿#include<bits/stdc++.h>>
 using namespace std;
-int n, atk;
-long long ans = 0;
-vector<tuple<int, int, int>> v;
+typedef long long ll;
+#define INF 1e18
+ll n, atk;
+ll ans;
+vector<tuple<ll, ll, ll>>v;
+bool go(ll k) {
+	ll attack = atk;
+	ll hp = k;
+	for (int i = 0; i < n; i++) {
+		ll info, atk1, h;
+		tie(info, atk1, h) = v[i];
+		ll cnt = 0;
+		if (info == 1) {
+			(h% attack)!=0 ? cnt = h / attack + 1 : cnt = h / attack;
+			cnt--;
+			if (cnt * atk1 >= hp) return false;
+			hp -= cnt * atk1;
+		}
+		else {
+			attack += atk1;
+			hp = min(k, hp + h);
+			//hp = min(k, hp);
+		}
+	}
+	return true;
+}
 int main() {
 	ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 	cin >> n >> atk;
@@ -11,31 +34,14 @@ int main() {
 		cin >> a >> b >> c;
 		v.push_back({ a,b,c });
 	}
-	long long sum = 0;
-	for(int i=0;i<n;i++){
-		int info, atk1, h; // Á¤º¸ , °ø°Ý·Â ,Ã¼·Â 
-		tie(info, atk1, h) = v[i];
-
-		if (info == 1) {
-			long long l = 0, r = 1e18+4, mid;
-			long long cnt = 1e18;
-			while (l <= r) {
-				mid = (l + r) >> 1;
-				if (mid * atk >= h) {
-					cnt = min(cnt, mid);
-					r = mid - 1;
-				}
-				else l = mid + 1;
-			}
-			sum += (cnt - 1) * atk1;
+	ll l = 1, r = INF, m;
+	while (l <= r) {
+		m = (l + r) >> 1;
+		if (go(m)) {
+			ans = m;
+			r = m - 1;
 		}
-		else {
-			if (ans < sum+1) ans = sum + 1;
-			if (sum > h) sum -= h;
-			else sum = 0;
-			atk += atk1;
-		}
+		else  l = m + 1;
 	}
-	if (ans < sum+1) ans = sum + 1;
 	cout << ans;
 }
