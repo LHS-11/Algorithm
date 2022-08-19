@@ -8,9 +8,9 @@ int dx[4] = { -1,0,1,0 };
 int dy[4] = { 0,-1,0,1 };
 int dfs(int x, int y) {
 
-	if (vis[y][x]) { 
+	if (vis[y][x]) { // 사이클이 있을 때
 		cout << -1;
-		exit(0);
+		exit(0); // 함수 바로 종료
 	} 
 	int& ans = dp[y][x];
 	if (ans) return ans;
