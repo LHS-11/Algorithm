@@ -27,7 +27,7 @@ vector<string> solution(vector<string> orders, vector<int> course) {
     vector<string> answer;
 
     for (auto str : orders) {
-        for (int i = 2; i <= str.size(); i++) {
+        for (auto i : course) {
             sort(str.begin(), str.end());
             go(0, i, str, "");
             memset(vis, 0, sizeof(vis));
