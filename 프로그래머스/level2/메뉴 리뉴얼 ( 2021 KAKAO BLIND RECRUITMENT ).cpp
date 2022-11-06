@@ -41,8 +41,6 @@ vector<string> solution(vector<string> orders, vector<int> course) {
         if (mp[c] >= 2) ans.push_back({ c.size(),mp[c],c });
     }
 
-    int chk[11];
-    for (auto n : course) chk[n]++;
 
     sort(ans.begin(), ans.end());
 
@@ -57,8 +55,7 @@ vector<string> solution(vector<string> orders, vector<int> course) {
         int a, b;
         string c;
         tie(a, b, c) = k;
-        if (sz[a] == b && chk[a]) {
-            cout << a << ' ' << b << ' ' << c << endl;
+        if (sz[a] == b) {
             answer.push_back(c);
         }
     }
