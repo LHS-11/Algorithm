@@ -9,6 +9,7 @@ string solution(string m, vector<string> musicinfos) {
     // 문자열 m을 가지고 find 함수 사용 
     // 존재한 제목과 시간 vector<pair<int,string>> answer에 넣기 
     vector<pair<int, string>> ans;
+    int mx = 0;
     for (auto music : musicinfos) {
 
         int startTime = stoi(music.substr(0, 2)) * 60 + stoi(music.substr(3, 2));
@@ -80,6 +81,9 @@ string solution(string m, vector<string> musicinfos) {
             else if (ss == "B") {
                 s.replace(s.find("#") - 1, 2, "N");
             }
+            else if (ss == "E") {
+                s.replace(s.find("#") - 1, 2, "O");
+            }
         }
 
         while (m.find("#") != string::npos) {
@@ -106,14 +110,24 @@ string solution(string m, vector<string> musicinfos) {
             else if (ss == "B") {
                 m.replace(m.find("#") - 1, 2, "N");
             }
+            else if (ss == "E") {
+                m.replace(m.find("#") - 1, 2, "O");
+            }
         }
         if (s.find(m) != string::npos) {
+            mx = max(t, mx);
             ans.push_back({ t,name });
         }
     }
-    sort(ans.begin(), ans.end());
+
+
     if (ans.size()) {
-        answer = ans[ans.size() - 1].second;
+        for (auto a : ans) {
+            if (a.first == mx) {
+                answer = a.second;
+                break;
+            }
+        }
     }
     else answer = "(None)";
 
