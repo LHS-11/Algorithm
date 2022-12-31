@@ -1,66 +1,47 @@
 ﻿#include<bits/stdc++.h>
 using namespace std;
-vector<string> ans;
-vector<string> ban, user;
-vector<string> repo;
-int vis[9];
-int chk[9];
-int answer, flag;
-void check(int k, int sz) {
+set<vector<string>> st;
+vector<string> user, ban;
+vector<string> a;
+int vis[9], answer;
+bool check(vector<string> a) {
+    for (int i = 0; i < ban.size(); i++) {
+        if (ban[i].size() != a[i].size()) return false;
+        for (int j = 0; j < ban[i].size(); j++) {
+            if (ban[i][j] == '*') continue;
+            if (ban[i][j] != a[i][j]) return false;
+        }
+    }
+    return true;
+}
+void go() {
 
-    if (repo.size() == sz) {
+    if (a.size() == ban.size()) {
 
-        if (flag) return;
-        for (int i = 0; i < sz; i++) {
-            if (repo[i].size() != ban[i].size()) return;
-            for (int j = 0; j < ban[i].size(); j++) {
-                if (ban[i][j] == '*') continue;
-                if (ban[i][j] != repo[i][j]) {
-                    return;
-                }
+        if (check(a)) {
+            vector<string> tmp = a;
+            sort(tmp.begin(), tmp.end());
+            if (st.find(tmp) == st.end()) {
+                st.insert(tmp);
+                answer++;
             }
         }
-        answer++;
-        flag = 1;
         return;
     }
 
-
-    for (int i = 0; i < sz; i++) {
-        if (chk[i]) continue;
-        chk[i] = 1;
-        repo.push_back(ans[i]);
-        check(i, sz);
-        repo.pop_back();
-        chk[i] = 0;
-
-    }
-}
-void go(int k, int sz) {
-
-    if (ans.size() == sz) {
-        flag = 0;
-        check(0, sz);
-        return;
-    }
-
-
-    for (int i = k; i < user.size(); i++) {
+    for (int i = 0; i < user.size(); i++) {
         if (vis[i]) continue;
         vis[i] = 1;
-        ans.push_back(user[i]);
-        go(i, sz);
-        ans.pop_back();
+        a.push_back(user[i]);
+        go();
+        a.pop_back();
         vis[i] = 0;
     }
-
 }
-
 int solution(vector<string> user_id, vector<string> banned_id) {
-    ban = banned_id;
     user = user_id;
-    int sz = ban.size();
-    go(0, sz);
+    ban = banned_id;
 
+    go();
     return answer;
 }
