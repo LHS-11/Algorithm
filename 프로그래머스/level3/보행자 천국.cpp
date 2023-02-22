@@ -44,3 +44,49 @@ int solution(int m, int n, vector<vector<int>> city_map) {
     
     return (dp[m-1][n-1][0]+dp[m-1][n-1][1])%MOD;
 }
+/*
+BFS 풀이
+#include<bits/stdc++.h>
+using namespace std;
+int MOD = 20170805;
+int dx[2]={0,1}; // 아래, 오른쪽
+int dy[2]={1,0};
+int dp[504][504][2];
+// 전역 변수를 정의할 경우 함수 내에 초기화 코드를 꼭 작성해주세요.
+int solution(int m, int n, vector<vector<int>> city_map) {
+    int answer = 0;
+    
+    queue<tuple<int,int,int,int>> q; // y,x,dir,dp 값
+    for(int i=0;i<m;i++){
+        for(int j=0;j<n;j++){
+            for(int k=0;k<2;k++) dp[i][j][k]=0;
+        }
+    }
+    
+    for(int i=0;i<2;i++) dp[0][0][i]=1;
+    
+    q.push({0,0,0,1});
+    
+    while(q.size()){
+        int x,y,dir,v;
+        tie(y,x,dir,v)=q.front();
+        q.pop();
+        
+        if(dp[y][x][dir]!=v) continue;
+        
+        for(int i=0;i<2;i++){ // 아래, 오른쪽
+            int nx=x+dx[i];
+            int ny=y+dy[i];
+            
+            if(nx<0 || ny<0 || nx>=n || ny >= m) continue;
+            if(city_map[ny][nx] !=1){
+                if(city_map[y][x]==2 && dir!=i) continue;
+                dp[ny][nx][i]+=dp[y][x][dir]%MOD;
+                q.push({ny,nx,i,dp[ny][nx][i]});
+            }
+        }
+    }
+    
+    return (dp[m-1][n-1][0]+dp[m-1][n-1][1])%MOD;
+}
+*/
