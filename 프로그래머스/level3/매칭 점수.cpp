@@ -5,6 +5,11 @@ map<string,int> link;
 map<string,double> score;
 map<string,int> idx;
 multimap<string,string> mmp;
+bool cmp(pair<double,int> a,pair<double,int> b){
+    if(a.first==b.first){
+        return a.second<b.second;
+    }else return a.first>b.first;
+}
 int getScore(string str,string word){
     string target1 = "<body>";
 	string target2 = "/<body>";
@@ -71,19 +76,21 @@ int solution(string word, vector<string> pages) {
                 score[it->second]+=((double)base[it->first]/(double)link[it->first]);
             }
         }
-        idx[pp[i]]=x;
-        x++;
+        idx[pp[i]]=x++;
         score[pp[i]]+=base[pp[i]];
     }
     
     double mx=0;
+    vector<pair<double,int>>v;
     for(auto it=score.begin();it!=score.end();it++){
-        if(mx<it->second){
-            mx=it->second;
-            answer=idx[it->first];
-        }
-        cout<<it->first<<' '<<it->second<<endl;
+        v.push_back({it->second,idx[it->first]});
+        // if(mx<it->second){ 
+        //     mx=it->second;
+        //     answer=idx[it->first];
+        // }
     }
     
-    return answer;
+    sort(v.begin(),v.end(),cmp);
+    
+    return v[0].second;
 }
