@@ -21,9 +21,9 @@ int go(int bit){
 	
 	rst=INF;
 	for(int i=0;i<n;i++){
-		if(!(bit & (1<<i))) continue;
+		if(!(bit & (1<<i))) continue; // 고장나지 않은 발전소를 선택 
 		for(int j=0;j<n;j++){
-			if(!(bit & (1<<j))){
+			if(!(bit & (1<<j))){ // 고장난 발전소를 선택 
 				int nxt_bit=bit | (1<<j);
 				rst=min(rst,arr[i][j]+go(nxt_bit));
 			}
