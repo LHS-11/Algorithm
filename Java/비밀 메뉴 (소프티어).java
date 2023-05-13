@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 /*
-¿ÏÀüÅ½»ö ¹®Á¦ 
+ì™„ì „íƒìƒ‰ ë¬¸ì œ 
 */
 public class Main
 {
