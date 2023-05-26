@@ -18,14 +18,14 @@ int main(){
 	
 	sort(v.begin(),v.end());
 	
-	int ans=0;
+	long long ans=0;
 	for(int i=0;i<v.size();i++){
 		int value=v[i]-i;
 		if(value>0) ans+=value; 
 	}
 	
 	sort(v.begin(),v.end(),greater<int>());
-	int ans1=0;
+	long long ans1=0;
 	for(int i=0;i<v.size();i++){
 		int value=v[i]-i;
 		if(value>0) ans1+=value;
