@@ -31,8 +31,6 @@ int main(){
 
 				}
 			}
-			
-			//for(int i=0;i<r;i++) cout<<s[i]<<'\n';
 		}else{
 			queue<pair<int,int>>q;
 			for(int i=0;i<r;i++){
@@ -58,16 +56,12 @@ int main(){
 					tt[ny][nx]=0;
 				}
 			}
-			
-			
+				
 		}
-		
-		
-		
 	}
 	
 	for(int i=0;i<r;i++){
-			cout<<s[i]<<'\n';
+		cout<<s[i]<<'\n';
 	}
 	
 }
