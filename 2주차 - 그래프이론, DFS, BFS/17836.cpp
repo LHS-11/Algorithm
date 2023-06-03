@@ -1,8 +1,7 @@
-/*
 #include<bits/stdc++.h>
 using namespace std;
 
-//ê·¸ë˜í”„ íƒìƒ‰ì¸ë°, ëª…ê²€ì„ ë¨¹ìœ¼ë©´ ë²½ì„ ë‹¤ë¶€ì‹¤ ìˆ˜ ìˆìŒ ì´ê±¸ êµ¬ë¶„í•´ì„œ ìµœë‹¨ê±°ë¦¬íƒìƒ‰ 
+//±×·¡ÇÁ Å½»öÀÎµ¥, ¸í°ËÀ» ¸ÔÀ¸¸é º®À» ´ÙºÎ½Ç ¼ö ÀÖÀ½ ÀÌ°É ±¸ºĞÇØ¼­ ÃÖ´Ü°Å¸®Å½»ö 
  
 const int INF=987654321;
 int n,m,t,ans1=INF,ans2=INF;
@@ -22,7 +21,7 @@ int main(){
 	}
 	
 	
-	// ë¨¼ì € ëª…ê²€ì„ ì•ˆë¨¹ê³  ê³µì£¼ë¥¼ êµ¬í•  ìˆ˜ ìˆëŠ”ì§€ í™•ì¸  
+	// ¸ÕÀú ¸í°ËÀ» ¾È¸Ô°í °øÁÖ¸¦ ±¸ÇÒ ¼ö ÀÖ´ÂÁö È®ÀÎ  
 	
 	queue<tuple<int,int,int>>q;
 	q.push(make_tuple(0,0,0));
@@ -50,8 +49,8 @@ int main(){
 		}
 	}
 	
-	
-	// ëª…ê²€ì„ ë¨¹ê³ , ê³µì£¼ë¥¼ êµ¬í•˜ê¸°  
+	while(q.size()) q.pop();
+	// ¸í°ËÀ» ¸Ô°í, °øÁÖ¸¦ ±¸ÇÏ±â  
 	
 	memset(vis,0,sizeof(vis));
 	q.push(make_tuple(0,0,0));
@@ -80,7 +79,9 @@ int main(){
 		}
 	}
 	
+	
 	if(ans2!=INF){
+		while(q.size()) q.pop();
 		memset(vis,0,sizeof(vis));
 		q.push(make_tuple(sy,sx,ans2));
 		while(q.size()){
@@ -116,74 +117,4 @@ int main(){
 	
 	
 } 
-*/
-#include <iostream>
-#include <algorithm>
-#include <queue>
 
-using namespace std;
-int N, M, T;
-char graph[100][100];
-bool visited[100][100][2];
-int dir[4][2] = { {0,1},{1,0},{0,-1},{-1,0} };
-void bfs() {
-	queue<pair<pair<int, int>, pair<bool, int>>> q;
-	q.push({ {0,0}, {false,0} });
-
-	while (!q.empty()) {
-		int r = q.front().first.first;
-		int c = q.front().first.second;
-		bool sword = q.front().second.first;
-		int t = q.front().second.second;
-
-		if (t > T) {
-			cout << "Fail";
-			return;
-		}
-		if (r == N - 1 && c == M - 1) {
-			cout << t;
-			return;
-		}
-		q.pop();
-		for (int i = 0; i < 4; i++) {
-			int nr = r + dir[i][0];
-			int nc = c + dir[i][1];
-			int nt = t + 1;
-			if (nr >= 0 && nr < N && nc >= 0 && nc < M) {
-				if (sword) {
-					if (!visited[nr][nc][1]) {
-						q.push({ { nr,nc }, { true,nt } });
-						visited[nr][nc][1] = true;
-					}
-				}
-				else {
-					if (graph[nr][nc] == '0'&& !visited[nr][nc][0]) {
-						q.push({ {nr,nc}, {false,nt} });
-						visited[nr][nc][0] = true;
-					}
-					else if (graph[nr][nc] == '2' && !visited[nr][nc][0]) {//ê²€ íšë“
-						q.push({ {nr,nc} ,{true,nt} });
-						visited[nr][nc][1] = true;
-					}
-					
-				}
-			}
-		}
-	}
-	cout << "Fail";
-}
-
-int main() {
-
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	cout.tie(0);
-	cin >> N >> M >> T;
-	for (int i = 0; i < N; i++) {
-		for (int j = 0; j < M; j++) {
-			cin >> graph[i][j];
-		}
-	}
-	bfs();
-	return 0;
-}
