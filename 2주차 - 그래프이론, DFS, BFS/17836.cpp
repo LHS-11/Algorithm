@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-//±×·¡ÇÁ Å½»öÀÎµ¥, ¸í°ËÀ» ¸ÔÀ¸¸é º®À» ´ÙºÎ½Ç ¼ö ÀÖÀ½ ÀÌ°É ±¸ºÐÇØ¼­ ÃÖ´Ü°Å¸®Å½»ö 
+//ê·¸ëž˜í”„ íƒìƒ‰ì¸ë°, ëª…ê²€ì„ ë¨¹ìœ¼ë©´ ë²½ì„ ë‹¤ë¶€ì‹¤ ìˆ˜ ìžˆìŒ ì´ê±¸ êµ¬ë¶„í•´ì„œ ìµœë‹¨ê±°ë¦¬íƒìƒ‰
  
 const int INF=987654321;
 int n,m,t,ans1=INF,ans2=INF;
@@ -21,7 +21,7 @@ int main(){
 	}
 	
 	
-	// ¸ÕÀú ¸í°ËÀ» ¾È¸Ô°í °øÁÖ¸¦ ±¸ÇÒ ¼ö ÀÖ´ÂÁö È®ÀÎ  
+	// ë¨¼ì € ëª…ê²€ì„ ì•ˆë¨¹ê³  ê³µì£¼ë¥¼ êµ¬í•  ìˆ˜ ìžˆëŠ”ì§€ í™•ì¸  
 	
 	queue<tuple<int,int,int>>q;
 	q.push(make_tuple(0,0,0));
@@ -50,7 +50,7 @@ int main(){
 	}
 	
 	while(q.size()) q.pop();
-	// ¸í°ËÀ» ¸Ô°í, °øÁÖ¸¦ ±¸ÇÏ±â  
+	// ëª…ê²€ì„ ë¨¹ê³ , ê³µì£¼ë¥¼ êµ¬í•˜ê¸°   
 	
 	memset(vis,0,sizeof(vis));
 	q.push(make_tuple(0,0,0));
