@@ -12,8 +12,6 @@ int main(){
 	while(t){
 		int flag=0;
 		for(int i=0;i<4;i++){
-			if(arr[i]==1) cout<<"单扁"<<endl;
-			else cout<<"环"<<endl;
 			if(arr[i]==c){
 				t--;
 			}
@@ -29,7 +27,6 @@ int main(){
 		}
 		
 		for(int i=0;i<idx;i++){
-			cout<<"环"<<endl; 
 			if(0==c){
 				t--;
 			}
@@ -45,7 +42,6 @@ int main(){
 		}
 		
 		for(int i=0;i<idx;i++){
-			cout<<"单扁"<<endl;
 			if(1==c){
 				t--;
 			}
