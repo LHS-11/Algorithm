@@ -1,12 +1,66 @@
 #include<bits/stdc++.h>
 using namespace std;
+string s;
+int n,ans=INT_MAX,ch[26];
+vector<pair<int,string>> v;
+void go(int cnt,int sum){
+	if(cnt==n){
+		
+		int flag=0;
+		int chh[26];
+		copy(ch,ch+26,chh);
+	
+		for(int i=0;i<s.size();i++){
+			if(chh[s[i]-'A']){
+				chh[s[i]-'A']--;
+			}else {
+				flag=1;
+				break;
+			}
+		}
+		
+		if(!flag) {	
+			ans=min(ans,sum);
+		}
+		return;
+	}
+	
+	string st=v[cnt].second;
+	for(int i=0;i<st.size();i++){
+		ch[st[i]-'A']++;
+	}
+	go(cnt+1,sum+v[cnt].first);
+	for(int i=0;i<st.size();i++){
+		ch[st[i]-'A']--;
+	}
+	go(cnt+1,sum);
+
+}
+int main(){
+	ios::sync_with_stdio(0);cin.tie(0);
+	
+	 cin >> s >> n;
+	 
+	 
+	 for(int i=0;i<n;i++){
+	 	int a; string b;
+	 	cin >> a>>b;
+	 	v.push_back(make_pair(a,b));
+	 }
+	 
+	 go(0,0);
+	 
+	 cout<<ans;
+}
+/*#include<bits/stdc++.h>
+using namespace std;
 string t;
 int n,vis[18],ans=INT_MAX;
 vector<int> v;
 int vvv[18][14];
-/*
-ì™„íƒìœ¼ë¡œ ëª¨ë“  ìˆœì—´ì„ êµ¬í•´ì„œ ìµœì†Ÿê°’ ì°¾ê¸°  
-*/
+
+// ¿ÏÅ½À¸·Î ¸ğµç ¼ø¿­À» ±¸ÇØ¼­ ÃÖ¼Ú°ª Ã£±â  
+
 void dfs(int idx,int sz,vector<pair<int,string>>& vt){
 	
 	
@@ -80,3 +134,4 @@ int main(){
 	if(ans==INT_MAX) cout<<-1;
 	else cout<<ans;
 }
+*/
