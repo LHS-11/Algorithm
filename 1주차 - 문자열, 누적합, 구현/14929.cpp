@@ -27,15 +27,18 @@ int main(){
 	
 	cin >> n;
 	
-	int sum=0;
+	long long sum=0;
 	for(int i=0;i<n;i++){
 		cin >> arr[i];
 		sum+=arr[i];
 	}
 	
-	int ans=0;
+	long long ans=0;
 	for(int i=0;i<n-1;i++){
+		
+		
 		sum-=arr[i];
+		cout<<i<<' '<<sum<<endl;
 		ans+=(arr[i]*sum);
 	}
 	
